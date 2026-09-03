@@ -1,0 +1,29 @@
+:root {
+  color: #172033;
+  background: #eef4f0;
+  font: 16px/1.5 Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  letter-spacing: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background:
+    linear-gradient(135deg, rgba(36, 113, 95, 0.12), transparent 34%),
+    linear-gradient(315deg, rgba(239, 149, 83, 0.14), transparent 32%),
+    #eef4f0;
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+code {
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  font-size: 13px;
+  padding: 3px 6px;
+}
