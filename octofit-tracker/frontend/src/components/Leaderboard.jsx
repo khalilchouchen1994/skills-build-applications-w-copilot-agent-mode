@@ -1,7 +1,10 @@
 import { useCollection } from './useCollection.js'
 
-function Leaderboard({ apiBaseUrl }) {
-  const { error, isLoading, items: leaderboard } = useCollection(apiBaseUrl, 'leaderboard')
+function Leaderboard() {
+  const leaderboardEndpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+    : 'http://localhost:8000/api/leaderboard/'
+  const { error, isLoading, items: leaderboard } = useCollection(leaderboardEndpoint, 'leaderboard')
 
   if (isLoading) {
     return <p className="status-note">Loading leaderboard...</p>

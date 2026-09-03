@@ -1,7 +1,10 @@
 import { useCollection } from './useCollection.js'
 
-function Users({ apiBaseUrl }) {
-  const { error, isLoading, items: users } = useCollection(apiBaseUrl, 'users')
+function Users() {
+  const usersEndpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+    : 'http://localhost:8000/api/users/'
+  const { error, isLoading, items: users } = useCollection(usersEndpoint, 'users')
 
   if (isLoading) {
     return <p className="status-note">Loading users...</p>

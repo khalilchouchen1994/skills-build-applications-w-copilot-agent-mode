@@ -1,7 +1,10 @@
 import { useCollection } from './useCollection.js'
 
-function Activities({ apiBaseUrl }) {
-  const { error, isLoading, items: activities } = useCollection(apiBaseUrl, 'activities')
+function Activities() {
+  const activitiesEndpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+    : 'http://localhost:8000/api/activities/'
+  const { error, isLoading, items: activities } = useCollection(activitiesEndpoint, 'activities')
 
   if (isLoading) {
     return <p className="status-note">Loading activities...</p>

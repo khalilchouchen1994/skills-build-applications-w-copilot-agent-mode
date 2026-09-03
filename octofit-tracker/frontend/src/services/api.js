@@ -6,6 +6,14 @@ export function buildApiBaseUrl() {
     : 'http://localhost:8000/api'
 }
 
+export function buildApiEndpoint(collectionKey) {
+  const codespaceName = import.meta.env.VITE_CODESPACE_NAME
+
+  return codespaceName
+    ? `https://${codespaceName}-8000.app.github.dev/api/${collectionKey}/`
+    : `http://localhost:8000/api/${collectionKey}/`
+}
+
 export function extractItems(payload, collectionKey) {
   if (Array.isArray(payload)) {
     return payload
@@ -30,8 +38,8 @@ export function extractItems(payload, collectionKey) {
   return []
 }
 
-export async function fetchCollection(apiBaseUrl, collectionKey) {
-  const response = await fetch(`${apiBaseUrl}/${collectionKey}/`)
+export async function fetchCollection(endpoint, collectionKey) {
+  const response = await fetch(endpoint)
 
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`)

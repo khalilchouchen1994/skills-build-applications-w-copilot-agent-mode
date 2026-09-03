@@ -1,7 +1,10 @@
 import { useCollection } from './useCollection.js'
 
-function Teams({ apiBaseUrl }) {
-  const { error, isLoading, items: teams } = useCollection(apiBaseUrl, 'teams')
+function Teams() {
+  const teamsEndpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+    : 'http://localhost:8000/api/teams/'
+  const { error, isLoading, items: teams } = useCollection(teamsEndpoint, 'teams')
 
   if (isLoading) {
     return <p className="status-note">Loading teams...</p>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../services/api.js'
 
-export function useCollection(apiBaseUrl, collectionKey) {
+export function useCollection(endpoint, collectionKey) {
   const [items, setItems] = useState([])
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -13,7 +13,7 @@ export function useCollection(apiBaseUrl, collectionKey) {
       try {
         setIsLoading(true)
         setError('')
-        const nextItems = await fetchCollection(apiBaseUrl, collectionKey)
+        const nextItems = await fetchCollection(endpoint, collectionKey)
 
         if (isMounted) {
           setItems(nextItems)
@@ -34,7 +34,7 @@ export function useCollection(apiBaseUrl, collectionKey) {
     return () => {
       isMounted = false
     }
-  }, [apiBaseUrl, collectionKey])
+  }, [endpoint, collectionKey])
 
   return { error, isLoading, items }
 }
